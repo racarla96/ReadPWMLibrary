@@ -1,6 +1,6 @@
 # PWMReader Library
 
-La **PWMReader Library** es una biblioteca de Arduino diseñada para facilitar la lectura de señales PWM utilizando interrupciones. 
+La **PWM Reader Library** es una biblioteca de Arduino diseñada para facilitar la lectura de señales PWM utilizando interrupciones. 
 
 ## Características
 
