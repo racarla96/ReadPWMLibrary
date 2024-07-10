@@ -22,7 +22,12 @@ public:
   // Public method to get the time of the last rising edge in microseconds
   unsigned long getTimeLastRisingEdge_us(){
     return _rising_time_us;
-  } 
+  }
+
+  bool isEnable(){
+    if(micros() - _rising_time_us > _period_time_us) return false;
+    return true;
+  }
 
 private:
   int _readPWMPin;   // Private member variable to store the PWM pin number
@@ -38,7 +43,9 @@ private:
   void Trigger()
   {
     // Disable interrupts to ensure atomicity of the critical section
+    #if !defined(ESP32)
     noInterrupts();
+    #endif 
 
     // Check if the PWM signal is currently LOW (FALLING EDGE)
     if(digitalRead(_readPWMPin) == LOW) { 
@@ -54,7 +61,9 @@ private:
     }
 
     // Re-enable interrupts
+    #if !defined(ESP32)
     interrupts();
+    #endif 
   }
 
   // Glue
